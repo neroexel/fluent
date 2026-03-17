@@ -3657,6 +3657,17 @@ Components.Notification = (function()
 			},
 		})
 
+		New("ImageLabel", {
+    Name = "Icon",
+    Image = Config.Icon and Library:GetIcon(Config.Icon) or "",
+    Size = UDim2.fromOffset(24, 24),
+    Position = UDim2.new(0, 14, 0, 14),
+    BackgroundTransparency = 1,
+    ImageColor3 = Color3.fromRGB(255, 255, 255),
+    ImageTransparency = 0,
+    ZIndex = 2,
+}),								
+
 		NewNotification.ContentLabel = New("TextLabel", {
 			FontFace = Font.new("rbxasset://fonts/families/GothamSSm.json"),
 			Text = Config.Content,
@@ -7461,6 +7472,38 @@ ElementsTable.Input = (function()
 	return Element
 end)()
 
+Discord = (function()
+    local Element = {}
+    Element.__index = Element
+    Element.__type = "Discord"
+
+    function Element:New(Idx, Config)
+        assert(Config.Invite, "AddDiscord - Missing Invite link")
+        local DiscordFrame = Components.Element(Config.Title or "Discord", nil, self.Container, true)
+
+        local Button = New("TextButton", {
+            Size = UDim2.new(1, -20, 0, 40),
+            BackgroundTransparency = 0.9,
+            Text = "Join " .. (Config.Title or "Discord"),
+            FontFace = Font.new("rbxasset://fonts/families/GothamSSm.json", Enum.FontWeight.Medium),
+            TextSize = 14,
+            ThemeTag = { BackgroundColor3 = "Element", TextColor3 = "Accent" }
+        }, {
+            New("UICorner", {CornerRadius = UDim.new(0, 6)}),
+            New("ImageLabel", {Image = "rbxassetid://10709751939", Size = UDim2.fromOffset(20,20), Position = UDim2.new(0,10,0.5,0), AnchorPoint = Vector2.new(0,0.5)})
+        })
+
+        Button.MouseButton1Click:Connect(function()
+            setclipboard(Config.Invite)
+            Library:Notify({Title = "Discord", Content = "Invite copied to clipboard!", Duration = 3})
+        end)
+
+        Button.Parent = DiscordFrame.Frame
+        return DiscordFrame
+    end
+    return Element
+end)()
+
 local NotificationModule = Components.Notification
 NotificationModule:Init(GUI)
 
@@ -9833,6 +9876,7 @@ function Library:CreateMinimizer(Config)
 
 
 	Config = Config or {}
+    Config.Icon = Config.Icon or nil
 
 
 	if self.Minimizer and self.Minimizer.Parent then
