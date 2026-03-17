@@ -3649,7 +3649,9 @@ Components.Notification = (function()
     Size = UDim2.fromOffset(24, 24),
     Position = UDim2.new(0, 14, 0, 14),
     BackgroundTransparency = 1,
-    ThemeTag = { ImageColor3 = "Text" },
+    ThemeTag = { 
+			ImageColor3 = "Text" 
+		},
 })
 
 									
