@@ -7490,29 +7490,18 @@ ElementsTable.Discord = (function()
 
     function Element:New(Idx, Config)
         assert(Config.Invite, "AddDiscord - Missing Invite link")
-        
-        -- Creates the element frame (the card)
-        local DiscordFrame = Components.Element(Config.Title or "", nil, self.Container, true)
+        local DiscordFrame = Components.Element(Config.Title or ".", nil, self.Container, true)
 
-        -- Clean icon-only button
         local Button = New("TextButton", {
-            Size = UDim2.new(0, 50, 0, 50),
-            BackgroundTransparency = 0.85,
-            Position = UDim2.new(0.5, 0, 0.5, 0),
-            AnchorPoint = Vector2.new(0.5, 0.5),
-            Text = "",                    -- ← No text at all
-            ThemeTag = { BackgroundColor3 = "Element" }
+            Size = UDim2.new(1, -20, 0, 40),
+            BackgroundTransparency = 0.9,
+            Text = "Join " .. (Config.Title or "Discord"),
+            FontFace = Font.new("rbxasset://fonts/families/GothamSSm.json", Enum.FontWeight.Medium),
+            TextSize = 14,
+            ThemeTag = { BackgroundColor3 = "Element", TextColor3 = "Accent" }
         }, {
-            New("UICorner", {CornerRadius = UDim.new(0, 12)}),
-            
-            New("ImageLabel", {
-                Image = Library:GetIcon("discord") or "rbxassetid://10042131950",
-                Size = UDim2.fromOffset(32, 32),
-                Position = UDim2.new(0.5, 0, 0.5, 0),
-                AnchorPoint = Vector2.new(0.5, 0.5),
-                BackgroundTransparency = 1,
-                ImageColor3 = Color3.fromRGB(255, 255, 255)
-            })
+            New("UICorner", {CornerRadius = UDim.new(0, 6)}),
+            New("ImageLabel", {Image = "rbxassetid://10709751939", Size = UDim2.fromOffset(20,20), Position = UDim2.new(0,10,0.5,0), AnchorPoint = Vector2.new(0,0.5)})
         })
 
         Button.MouseButton1Click:Connect(function()
