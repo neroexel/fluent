@@ -62,40 +62,40 @@ local Themes = {
 	},
 Apple = {
     Name = "Apple",
-    Accent = Color3.fromRGB(255, 70, 70),  -- Bright Apple red for all interactive/functional elements
-    AcrylicMain = Color3.fromRGB(0, 0, 0),  -- Pure black AMOLED background
-    AcrylicBorder = Color3.fromRGB(30, 30, 30),  -- Very subtle dark border (minimal contrast)
-    AcrylicGradient = ColorSequence.new(Color3.fromRGB(10, 10, 10), Color3.fromRGB(0, 0, 0)),  -- Almost invisible gradient for depth
-    AcrylicNoise = 0.95,  -- Very light noise to avoid pure flat black while staying AMOLED-friendly
-    TitleBarLine = Color3.fromRGB(40, 40, 40),
-    Tab = Color3.fromRGB(15, 15, 15),  -- Near-black tabs
-    Element = Color3.fromRGB(20, 20, 20),  -- Slightly elevated dark elements (low contrast)
-    ElementBorder = Color3.fromRGB(10, 10, 10),
-    InElementBorder = Color3.fromRGB(35, 35, 35),
-    ElementTransparency = 0.88,  -- High transparency for a clean, floating feel on black
-    ToggleSlider = Color3.fromRGB(30, 30, 30),  -- Dark rail
-    ToggleToggled = Color3.fromRGB(255, 70, 70),  -- Red when enabled (like your slider image)
-    SliderRail = Color3.fromRGB(30, 30, 30),  -- Dark rail matching toggles
-    DropdownFrame = Color3.fromRGB(20, 20, 20),
-    DropdownHolder = Color3.fromRGB(10, 10, 10),
-    DropdownBorder = Color3.fromRGB(5, 5, 5),
-    DropdownOption = Color3.fromRGB(25, 25, 25),
-    Keybind = Color3.fromRGB(20, 20, 20),
-    Input = Color3.fromRGB(25, 25, 25),
-    InputFocused = Color3.fromRGB(10, 10, 10),  -- Darker when focused
-    InputIndicator = Color3.fromRGB(255, 100, 100),  -- Glowing red cursor/indicator
-    Dialog = Color3.fromRGB(10, 10, 10),
-    DialogHolder = Color3.fromRGB(5, 5, 5),
-    DialogHolderLine = Color3.fromRGB(0, 0, 0),
-    DialogButton = Color3.fromRGB(20, 20, 20),
-    DialogButtonBorder = Color3.fromRGB(40, 40, 40),
-    DialogBorder = Color3.fromRGB(30, 30, 30),
-    DialogInput = Color3.fromRGB(20, 20, 20),
-    DialogInputLine = Color3.fromRGB(255, 100, 100),
-    Text = Color3.fromRGB(240, 240, 240),  -- Crisp near-white text (great on black)
-    SubText = Color3.fromRGB(160, 160, 160),  -- Softer gray subtext
-    Hover = Color3.fromRGB(35, 35, 35),  -- Subtle dark hover
-    HoverChange = 0.08,  -- Minimal hover shift to keep it clean and low-contrast
+    Accent = Color3.fromRGB(10, 132, 255), -- Apple System Blue
+    AcrylicMain = Color3.fromRGB(28, 28, 30), -- macOS dark background layer 1
+    AcrylicBorder = Color3.fromRGB(60, 60, 64),
+    AcrylicGradient = ColorSequence.new(Color3.fromRGB(28, 28, 30), Color3.fromRGB(28, 28, 30)),
+    AcrylicNoise = 1, -- Set to 1 to hide noise for a clean Apple look
+    TitleBarLine = Color3.fromRGB(60, 60, 64),
+    Tab = Color3.fromRGB(44, 44, 46), -- macOS dark background layer 2
+    Element = Color3.fromRGB(44, 44, 46),
+    ElementBorder = Color3.fromRGB(60, 60, 64),
+    InElementBorder = Color3.fromRGB(70, 70, 74),
+    ElementTransparency = 0.5, -- More translucency for blur effect
+    ToggleSlider = Color3.fromRGB(58, 58, 60),
+    ToggleToggled = Color3.fromRGB(48, 209, 88), -- Apple System Green for toggles
+    SliderRail = Color3.fromRGB(58, 58, 60),
+    DropdownFrame = Color3.fromRGB(44, 44, 46),
+    DropdownHolder = Color3.fromRGB(28, 28, 30),
+    DropdownBorder = Color3.fromRGB(60, 60, 64),
+    DropdownOption = Color3.fromRGB(58, 58, 60),
+    Keybind = Color3.fromRGB(58, 58, 60),
+    Input = Color3.fromRGB(58, 58, 60),
+    InputFocused = Color3.fromRGB(72, 72, 74),
+    InputIndicator = Color3.fromRGB(10, 132, 255),
+    Dialog = Color3.fromRGB(28, 28, 30),
+    DialogHolder = Color3.fromRGB(44, 44, 46),
+    DialogHolderLine = Color3.fromRGB(60, 60, 64),
+    DialogButton = Color3.fromRGB(44, 44, 46),
+    DialogButtonBorder = Color3.fromRGB(60, 60, 64),
+    DialogBorder = Color3.fromRGB(60, 60, 64),
+    DialogInput = Color3.fromRGB(58, 58, 60),
+    DialogInputLine = Color3.fromRGB(10, 132, 255),
+    Text = Color3.fromRGB(255, 255, 255),
+    SubText = Color3.fromRGB(235, 235, 245), -- Muted secondary text
+    Hover = Color3.fromRGB(72, 72, 74),
+    HoverChange = 0.04,
 },
 	Dark = {
 		Name = "Dark",
@@ -2134,7 +2134,7 @@ function AcrylicPaint()
 			}),
 
 			New("UICorner", {
-				CornerRadius = UDim.new(0, 8),
+				CornerRadius = UDim.new(0, 12),
 			}),
 
 			New("Frame", {
@@ -2146,7 +2146,7 @@ function AcrylicPaint()
 				},
 			}, {
 				New("UICorner", {
-					CornerRadius = UDim.new(0, 8),
+					CornerRadius = UDim.new(0, 12),
 				}),
 			}),
 
@@ -2156,7 +2156,7 @@ function AcrylicPaint()
 				Size = UDim2.fromScale(1, 1),
 			}, {
 				New("UICorner", {
-					CornerRadius = UDim.new(0, 8),
+					CornerRadius = UDim.new(0, 12),
 				}),
 
 				New("UIGradient", {
@@ -2176,7 +2176,7 @@ function AcrylicPaint()
 				BackgroundTransparency = 1,
 			}, {
 				New("UICorner", {
-					CornerRadius = UDim.new(0, 8),
+					CornerRadius = UDim.new(0, 12),
 				}),
 			}),
 
@@ -2192,7 +2192,7 @@ function AcrylicPaint()
 				},
 			}, {
 				New("UICorner", {
-					CornerRadius = UDim.new(0, 8),
+					CornerRadius = UDim.new(0, 12),
 				}),
 			}),
 
@@ -2202,7 +2202,7 @@ function AcrylicPaint()
 				ZIndex = 2,
 			}, {
 				New("UICorner", {
-					CornerRadius = UDim.new(0, 8),
+					CornerRadius = UDim.new(0, 12),
 				}),
 				New("UIStroke", {
 					Transparency = 0.5,
@@ -2297,7 +2297,7 @@ Components.Element = (function()
 		local Options = Options or {}
 
 		Element.TitleLabel = New("TextLabel", {
-			FontFace = Font.new("rbxasset://fonts/families/GothamSSm.json", Enum.FontWeight.Medium, Enum.FontStyle.Normal),
+			FontFace = Font.new("rbxasset://fonts/families/GothamSSm.json", Enum.FontWeight.SemiBold, Enum.FontStyle.Normal),
 			Text = Title,
 			TextColor3 = Color3.fromRGB(240, 240, 240),
 			TextSize = 13,
@@ -2389,7 +2389,7 @@ Components.Element = (function()
 		})
 
 		Element.Border = New("UIStroke", {
-			Transparency = 0.5,
+			Transparency = 0.85,
 			ApplyStrokeMode = Enum.ApplyStrokeMode.Border,
 			Color = Color3.fromRGB(0, 0, 0),
 			ThemeTag = {
@@ -2412,7 +2412,7 @@ Components.Element = (function()
 			},
 		}, {
 			New("UICorner", {
-				CornerRadius = UDim.new(0, 4),
+				CornerRadius = UDim.new(0, 8),
 			}),
 			Element.Border,
 			Element.LabelHolder,
@@ -2714,7 +2714,7 @@ Components.Tab = (function()
 			},
 		}, {
 			New("UICorner", {
-				CornerRadius = UDim.new(0, 6),
+				CornerRadius = UDim.new(0, 8),
 			}),
 			New("TextLabel", {
 				AnchorPoint = Vector2.new(0, 0.5),
@@ -2728,7 +2728,7 @@ Components.Tab = (function()
 					Enum.FontWeight.Regular,
 					Enum.FontStyle.Normal
 				),
-				TextSize = 12,
+				TextSize = 14,
 				TextXAlignment = "Left",
 				TextYAlignment = "Center",
 				Size = UDim2.new(1, -12, 1, 0),
@@ -2946,7 +2946,7 @@ Components.Tab = (function()
 					TextColor3 = Color3.fromRGB(255, 255, 255),
 					TextTransparency = 0,
 					FontFace = Font.new("rbxasset://fonts/families/GothamSSm.json", Enum.FontWeight.Regular, Enum.FontStyle.Normal),
-					TextSize = 12,
+					TextSize = 14,
 					TextXAlignment = "Left",
 					TextYAlignment = "Center",
 					Size = UDim2.new(0, 0, 1, 0),
@@ -4087,7 +4087,7 @@ Components.TitleBar = (function()
 					Text = Config.Title,
 					FontFace = Font.new(
 						"rbxasset://fonts/families/GothamSSm.json",
-						Enum.FontWeight.Regular,
+						Enum.FontWeight.SemiBold,
 						Enum.FontStyle.Normal
 					),
 					TextSize = 12,
@@ -4107,7 +4107,7 @@ Components.TitleBar = (function()
 					TextTransparency = 0.4,
 					FontFace = Font.new(
 						"rbxasset://fonts/families/GothamSSm.json",
-						Enum.FontWeight.Regular,
+						Enum.FontWeight.SemiBold,
 						Enum.FontStyle.Normal
 					),
 					TextSize = 12,
