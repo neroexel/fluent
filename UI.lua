@@ -3644,8 +3644,6 @@ Components.Notification = (function()
 
 		NewNotification.AcrylicPaint = Acrylic.AcrylicPaint()
 
-
-								
 		NewNotification.Title = New("TextLabel", {
 			Position = UDim2.new(0, 14, 0, 17),
 			Text = Config.Title,
@@ -3661,9 +3659,8 @@ Components.Notification = (function()
 			BackgroundTransparency = 1,
 			ThemeTag = {
 				TextColor3 = "Text",
-			},			
+			},
 		})
-																	
 
 		NewNotification.ContentLabel = New("TextLabel", {
 			FontFace = Font.new("rbxasset://fonts/families/GothamSSm.json"),
