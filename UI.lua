@@ -7481,7 +7481,7 @@ ElementsTable.Input = (function()
 	end
 
 	return Element
-end)()
+end)(),
 
 Discord = (function()
     local Element = {}
