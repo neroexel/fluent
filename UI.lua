@@ -804,7 +804,7 @@ Apple = {
 }
 
 local Library = {
-	Version = "1.2.3",
+	Version = "1.2.2",
 
 	OpenFrames = {},
 	Options = {},
@@ -1863,7 +1863,7 @@ Library.MiniMessageToRichText = MiniMessageToRichText
 local New = Creator.New
 
 local GUI = New("ScreenGui", {
-    Parent = LocalPlayer:WaitForChild("PlayerGui"),
+	Parent = LocalPlayer:WaitForChild("PlayerGui"),
 })
 Library.GUI = GUI
 ProtectGui(GUI)
@@ -3618,15 +3618,8 @@ Components.Notification = (function()
 			ThemeTag = {
 				TextColor3 = "Text",
 			},
-		})					
-        New("ImageLabel", {
-    Image = Config.Icon and Library:GetIcon(Config.Icon) or "",
-    Size = UDim2.fromOffset(24, 24),
-    Position = UDim2.new(0, 15, 0, 15),
-    BackgroundTransparency = 1,
-    ThemeTag = { ImageColor3 = "Text" }
-}),
-										
+		})
+
 		NewNotification.ContentLabel = New("TextLabel", {
 			FontFace = Font.new("rbxasset://fonts/families/GothamSSm.json"),
 			Text = Config.Content,
@@ -5353,7 +5346,7 @@ ElementsTable.Toggle = (function()
 			Toggle.Changed = Func
 			Func(Toggle.Value)
 		end
-        
+
 		function Toggle:SetValue(Value)
 			Value = not not Value
 			Toggle.Value = Value
@@ -9803,7 +9796,6 @@ function Library:CreateMinimizer(Config)
 
 
 	Config = Config or {}
-    Config.Icon = Config.Icon or nil
 
 
 	if self.Minimizer and self.Minimizer.Parent then
