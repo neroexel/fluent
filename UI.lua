@@ -58,7 +58,7 @@ local Themes = {
 		"Grape",
 		"Bloody",
 		"Arctic",
-		"Nebula",
+		"Nebula"
 	},
 Apple = {
     Name = "Apple",
@@ -839,6 +839,8 @@ Apple = {
     Hover = Color3.fromRGB(150, 80, 220),
     HoverChange = 0.04
 }
+}
+	
 
 local Library = {
 	Version = "1.2.3",
