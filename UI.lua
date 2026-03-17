@@ -3644,17 +3644,8 @@ Components.Notification = (function()
 
 		NewNotification.AcrylicPaint = Acrylic.AcrylicPaint()
 
-        NewNotification.Icon = New("ImageLabel", {
-    Image = Config.Icon and Library:GetIcon(Config.Icon) or "",
-    Size = UDim2.fromOffset(24, 24),
-    Position = UDim2.new(0, 14, 0, 14),
-    BackgroundTransparency = 1,
-    ThemeTag = { 
-			ImageColor3 = "Text" 
-		},
-})
 
-									
+								
 		NewNotification.Title = New("TextLabel", {
 			Position = UDim2.new(0, 14, 0, 17),
 			Text = Config.Title,
