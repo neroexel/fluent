@@ -7466,7 +7466,7 @@ ElementsTable.Input = (function()
 	return Element
 end)()
 
-Discord = (function()
+ElementsTable.Discord = (function()
     local Element = {}
     Element.__index = Element
     Element.__type = "Discord"
