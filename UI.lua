@@ -2311,6 +2311,13 @@ Components.Element = (function()
 			},
 		})
 
+        Creator.AddSignal(Element.TitleLabel.MouseEnter, function()
+			TweenService:Create(Element.TitleLabel, TweenInfo.new(0.2, Enum.EasingStyle.Bounce), {TextSize = 14.5}):Play()
+		end)
+		Creator.AddSignal(Element.TitleLabel.MouseLeave, function()
+			TweenService:Create(Element.TitleLabel, TweenInfo.new(0.2), {TextSize = 13}):Play()
+		end)
+									
 		Element.Header = New("Frame", {
 			AutomaticSize = Enum.AutomaticSize.Y,
 			BackgroundTransparency = 1,
@@ -3644,6 +3651,7 @@ Components.Notification = (function()
 
 		NewNotification.AcrylicPaint = Acrylic.AcrylicPaint()
 
+-- ICON (clean left side)
 NewNotification.Icon = New("ImageLabel", {
     Image = Config.Icon and Library:GetIcon(Config.Icon) or "",
     Size = UDim2.fromOffset(24, 24),
@@ -3652,17 +3660,18 @@ NewNotification.Icon = New("ImageLabel", {
     ThemeTag = { ImageColor3 = "Text" },
 })
 
+-- TITLE (moved right to make perfect space for icon)
 NewNotification.Title = New("TextLabel", {
-    Position = UDim2.new(0, 48, 0, 14),   -- moved right to make space for icon
+    Position = UDim2.new(0, 46, 0, 13),   -- ← changed from 48 to 46 for better look
     Text = Config.Title,
     RichText = true,
     TextColor3 = Color3.fromRGB(255, 255, 255),
     TextTransparency = 0,
     FontFace = Font.new("rbxasset://fonts/families/GothamSSm.json"),
-    TextSize = 13,
+    TextSize = 14,
     TextXAlignment = "Left",
     TextYAlignment = "Center",
-    Size = UDim2.new(1, -60, 0, 12),
+    Size = UDim2.new(1, -70, 0, 14),
     TextWrapped = true,
     BackgroundTransparency = 1,
     ThemeTag = {
