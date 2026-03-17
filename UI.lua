@@ -7501,7 +7501,7 @@ ElementsTable.Discord = (function()
             ThemeTag = { BackgroundColor3 = "Element", TextColor3 = "Accent" }
         }, {
             New("UICorner", {CornerRadius = UDim.new(0, 6)}),
-            New("ImageLabel", {Image = "rbxassetid://10042131950", Size = UDim2.fromOffset(20,20), Position = UDim2.new(0,10,0.5,0), AnchorPoint = Vector2.new(0,0.5)})
+            New("ImageLabel", {Image = "rbxassetid://10709751939", Size = UDim2.fromOffset(20,20), Position = UDim2.new(0,10,0.5,0), AnchorPoint = Vector2.new(0,0.5)})
         })
 
         Button.MouseButton1Click:Connect(function()
