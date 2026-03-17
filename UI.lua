@@ -1900,10 +1900,7 @@ Library.MiniMessageToRichText = MiniMessageToRichText
 local New = Creator.New
 
 local GUI = New("ScreenGui", {
-    Parent = game:GetService("CoreGui"),
-    ResetOnSpawn = false,
-    ZIndexBehavior = Enum.ZIndexBehavior.Sibling,
-    DisplayOrder = 999999999,
+    Parent = LocalPlayer:WaitForChild("PlayerGui"),
 })
 Library.GUI = GUI
 ProtectGui(GUI)
@@ -7482,6 +7479,38 @@ ElementsTable.Input = (function()
 
 	return Element
 end)()
+
+Discord = (function()
+    local Element = {}
+    Element.__index = Element
+    Element.__type = "Discord"
+
+    function Element:New(Idx, Config)
+        assert(Config.Invite, "AddDiscord - Missing Invite link")
+        local DiscordFrame = Components.Element(Config.Title or "Discord", nil, self.Container, true)
+
+        local Button = New("TextButton", {
+            Size = UDim2.new(1, -20, 0, 40),
+            BackgroundTransparency = 0.9,
+            Text = "Join " .. (Config.Title or "Discord"),
+            FontFace = Font.new("rbxasset://fonts/families/GothamSSm.json", Enum.FontWeight.Medium),
+            TextSize = 14,
+            ThemeTag = { BackgroundColor3 = "Element", TextColor3 = "Accent" }
+        }, {
+            New("UICorner", {CornerRadius = UDim.new(0, 6)}),
+            New("ImageLabel", {Image = "rbxassetid://10709751939", Size = UDim2.fromOffset(20,20), Position = UDim2.new(0,10,0.5,0), AnchorPoint = Vector2.new(0,0.5)})
+        })
+
+        Button.MouseButton1Click:Connect(function()
+            setclipboard(Config.Invite)
+            Library:Notify({Title = "Discord", Content = "Invite copied to clipboard!", Duration = 3})
+        end)
+
+        Button.Parent = DiscordFrame.Frame
+        return DiscordFrame
+    end
+    return Element
+end)()							
 
 local NotificationModule = Components.Notification
 NotificationModule:Init(GUI)
