@@ -9879,7 +9879,6 @@ function Library:CreateMinimizer(Config)
 
 
 	Config = Config or {}
-    Config.Icon = Config.Icon or nil
 
 
 	if self.Minimizer and self.Minimizer.Parent then
