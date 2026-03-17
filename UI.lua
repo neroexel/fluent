@@ -3644,32 +3644,31 @@ Components.Notification = (function()
 
 		NewNotification.AcrylicPaint = Acrylic.AcrylicPaint()
 
-        NewNotification.Icon = New("ImageLabel", {
+NewNotification.Icon = New("ImageLabel", {
     Image = Config.Icon and Library:GetIcon(Config.Icon) or "",
     Size = UDim2.fromOffset(24, 24),
     Position = UDim2.new(0, 14, 0, 14),
     BackgroundTransparency = 1,
     ThemeTag = { ImageColor3 = "Text" },
 })
- 
-		NewNotification.Title = New("TextLabel", {
-			Position = UDim2.new(0, 48, 0, 14),
-			Text = Config.Title,
-			RichText = true,
-			TextColor3 = Color3.fromRGB(255, 255, 255),
-			TextTransparency = 0,
-			FontFace = Font.new("rbxasset://fonts/families/GothamSSm.json"),
-			TextSize = 13,
-			TextXAlignment = "Left",
-			TextYAlignment = "Center",
-			Size = UDim2.new(1, -12, 0, 12),
-			TextWrapped = true,
-			BackgroundTransparency = 1,
-			ThemeTag = {
-				TextColor3 = "Text",
-			},
-		})
 
+NewNotification.Title = New("TextLabel", {
+    Position = UDim2.new(0, 48, 0, 14),   -- moved right to make space for icon
+    Text = Config.Title,
+    RichText = true,
+    TextColor3 = Color3.fromRGB(255, 255, 255),
+    TextTransparency = 0,
+    FontFace = Font.new("rbxasset://fonts/families/GothamSSm.json"),
+    TextSize = 13,
+    TextXAlignment = "Left",
+    TextYAlignment = "Center",
+    Size = UDim2.new(1, -60, 0, 12),
+    TextWrapped = true,
+    BackgroundTransparency = 1,
+    ThemeTag = {
+        TextColor3 = "Text",
+    },
+})
 		NewNotification.ContentLabel = New("TextLabel", {
 			FontFace = Font.new("rbxasset://fonts/families/GothamSSm.json"),
 			Text = Config.Content,
