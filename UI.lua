@@ -3743,6 +3743,7 @@ Components.Notification = (function()
 			Position = UDim2.fromScale(1, 0),
 		}, {
 			NewNotification.AcrylicPaint.Frame,
+		    NewNotification.Icon,
 			NewNotification.Title,
 			NewNotification.CloseButton,
 			NewNotification.LabelHolder,
