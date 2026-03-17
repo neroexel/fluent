@@ -7502,12 +7502,7 @@ ElementsTable.Discord = (function()
         }, {
             New("UICorner", {CornerRadius = UDim.new(0, 6)}),
             New("ImageLabel", {
-    Image = Library:GetIcon("discord") or "rbxassetid://10042131950",
-    Size = UDim2.fromOffset(20,20),
-    Position = UDim2.new(0,10,0.5,0),
-    AnchorPoint = Vector2.new(0,0.5),
-    BackgroundTransparency = 1
-})
+            New("ImageLabel", {Image = "rbxassetid://10709751939", Size = UDim2.fromOffset(20,20), Position = UDim2.new(0,10,0.5,0), AnchorPoint = Vector2.new(0,0.5)})
         })
 
         Button.MouseButton1Click:Connect(function()
