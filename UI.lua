@@ -7473,7 +7473,7 @@ ElementsTable.Discord = (function()
 
     function Element:New(Idx, Config)
         assert(Config.Invite, "AddDiscord - Missing Invite link")
-        local DiscordFrame = Components.Element(Config.Title or "Apple Hub", nil, self.Container, true)
+        local DiscordFrame = Components.Element(Config.Title or " ", nil, self.Container, true)
 
         local Button = New("TextButton", {
             Size = UDim2.new(1, -20, 0, 40),
