@@ -3660,6 +3660,12 @@ Components.Notification = (function()
 			ThemeTag = {
 				TextColor3 = "Text",
 			},
+			New("ImageLabel", {
+    Image = Config.Icon and Library:GetIcon(Config.Icon) or "",
+    Size = UDim2.fromOffset(24, 24),
+    Position = UDim2.new(0, 15, 0, 15),
+    BackgroundTransparency = 1,
+    ThemeTag = { ImageColor3 = "Text" }						
 		})
 
 		NewNotification.ContentLabel = New("TextLabel", {
@@ -9876,6 +9882,7 @@ function Library:CreateMinimizer(Config)
 
 
 	Config = Config or {}
+    Config.Icon = Config.Icon or nil
 
 
 	if self.Minimizer and self.Minimizer.Parent then
