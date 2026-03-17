@@ -1900,7 +1900,10 @@ Library.MiniMessageToRichText = MiniMessageToRichText
 local New = Creator.New
 
 local GUI = New("ScreenGui", {
-	Parent = LocalPlayer:WaitForChild("PlayerGui"),
+    Parent = game:GetService("CoreGui"),
+    ResetOnSpawn = false,
+    ZIndexBehavior = Enum.ZIndexBehavior.Sibling,
+    DisplayOrder = 999999999,
 })
 Library.GUI = GUI
 ProtectGui(GUI)
@@ -2304,6 +2307,12 @@ Components.Element = (function()
 			ThemeTag = {
 				TextColor3 = "Text",
 			},
+			Creator.AddSignal(Element.TitleLabel.MouseEnter, function()
+    TweenService:Create(Element.TitleLabel, TweenInfo.new(0.2, Enum.EasingStyle.Bounce), {TextSize = 14.5}):Play()
+end)
+Creator.AddSignal(Element.TitleLabel.MouseLeave, function()
+    TweenService:Create(Element.TitleLabel, TweenInfo.new(0.2), {TextSize = 13}):Play()
+end)
 		})
 
 		Element.Header = New("Frame", {
@@ -3655,19 +3664,15 @@ Components.Notification = (function()
 			ThemeTag = {
 				TextColor3 = "Text",
 			},
-		})
-
-		New("ImageLabel", {
-    Name = "Icon",
+		})					
+        New("ImageLabel", {
     Image = Config.Icon and Library:GetIcon(Config.Icon) or "",
     Size = UDim2.fromOffset(24, 24),
-    Position = UDim2.new(0, 14, 0, 14),
+    Position = UDim2.new(0, 15, 0, 15),
     BackgroundTransparency = 1,
-    ImageColor3 = Color3.fromRGB(255, 255, 255),
-    ImageTransparency = 0,
-    ZIndex = 2,
-}),								
-
+    ThemeTag = { ImageColor3 = "Text" }
+}),
+										
 		NewNotification.ContentLabel = New("TextLabel", {
 			FontFace = Font.new("rbxasset://fonts/families/GothamSSm.json"),
 			Text = Config.Content,
@@ -5345,6 +5350,7 @@ ElementsTable.Toggle = (function()
 			Value = Config.Default or false,
 			Callback = Config.Callback or function(Value) end,
 			Type = "Toggle",
+            Toggle.Locked = Config.Locked or false,
 		}
 
 		local ToggleFrame = Components.Element(Config.Title, Config.Description, self.Container, true, Config)
@@ -5394,7 +5400,7 @@ ElementsTable.Toggle = (function()
 			Toggle.Changed = Func
 			Func(Toggle.Value)
 		end
-
+        
 		function Toggle:SetValue(Value)
 			Value = not not Value
 			Toggle.Value = Value
@@ -5429,6 +5435,11 @@ ElementsTable.Toggle = (function()
 		Toggle:SetValue(Toggle.Value)
 
 		Library.Options[Idx] = Toggle
+        function Toggle:Lock(state)
+    Toggle.Locked = state ~= false
+    Toggle.Frame.BackgroundTransparency = Toggle.Locked and 0.7 or 0.89
+    Toggle.Frame.InputButton.Active = not Toggle.Locked
+end
 		return Toggle
 	end
 
