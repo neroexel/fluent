@@ -5339,6 +5339,7 @@ ElementsTable.Toggle = (function()
 			Value = Config.Default or false,
 			Callback = Config.Callback or function(Value) end,
 			Type = "Toggle",
+            Toggle.Locked = Config.Locked or false,
 		}
 
 		local ToggleFrame = Components.Element(Config.Title, Config.Description, self.Container, true, Config)
@@ -5423,6 +5424,11 @@ ElementsTable.Toggle = (function()
 		Toggle:SetValue(Toggle.Value)
 
 		Library.Options[Idx] = Toggle
+        function Toggle:Lock(state)
+    Toggle.Locked = state ~= false
+    Toggle.Frame.BackgroundTransparency = Toggle.Locked and 0.7 or 0.89
+    Toggle.Frame.InputButton.Active = not Toggle.Locked
+end
 		return Toggle
 	end
 
