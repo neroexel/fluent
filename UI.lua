@@ -58,7 +58,7 @@ local Themes = {
 		"Grape",
 		"Bloody",
 		"Arctic",
-		"Nebula",
+		"Nebula"
 	},
 Apple = {
     Name = "Apple",
