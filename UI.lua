@@ -2304,12 +2304,6 @@ Components.Element = (function()
 			ThemeTag = {
 				TextColor3 = "Text",
 			},
-			Creator.AddSignal(Element.TitleLabel.MouseEnter, function()
-    TweenService:Create(Element.TitleLabel, TweenInfo.new(0.2, Enum.EasingStyle.Bounce), {TextSize = 14.5}):Play()
-end)
-Creator.AddSignal(Element.TitleLabel.MouseLeave, function()
-    TweenService:Create(Element.TitleLabel, TweenInfo.new(0.2), {TextSize = 13}):Play()
-end)
 		})
 
 		Element.Header = New("Frame", {
