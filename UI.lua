@@ -3653,7 +3653,7 @@ Components.Notification = (function()
 })
  
 		NewNotification.Title = New("TextLabel", {
-			Position = UDim2.new(0, 14, 0, 17),
+			Position = UDim2.new(0, 48, 0, 14),
 			Text = Config.Title,
 			RichText = true,
 			TextColor3 = Color3.fromRGB(255, 255, 255),
