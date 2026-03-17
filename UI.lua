@@ -57,8 +57,7 @@ local Themes = {
 		"Cloud",
 		"Grape",
 		"Bloody",
-		"Arctic",
-		"Nebula"
+		"Arctic"
 	},
 Apple = {
     Name = "Apple",
@@ -800,47 +799,9 @@ Apple = {
 		SubText = Color3.fromRGB(180, 200, 220),
 		Hover = Color3.fromRGB(90, 140, 180),
 		HoverChange = 0.04
-	},
-    Nebula = {
-    Name = "Nebula",
-    Accent = Color3.fromRGB(180, 80, 255),
-    AcrylicMain = Color3.fromRGB(15, 10, 35),
-    AcrylicBorder = Color3.fromRGB(90, 40, 150),
-    AcrylicGradient = ColorSequence.new(Color3.fromRGB(25, 15, 50), Color3.fromRGB(40, 20, 70)),
-    AcrylicNoise = 0.92,
-    TitleBarLine = Color3.fromRGB(110, 60, 180),
-    Tab = Color3.fromRGB(130, 70, 200),
-    Element = Color3.fromRGB(110, 55, 170),
-    ElementBorder = Color3.fromRGB(70, 35, 110),
-    InElementBorder = Color3.fromRGB(95, 50, 140),
-    ElementTransparency = 0.85,
-    ToggleSlider = Color3.fromRGB(140, 75, 210),
-    ToggleToggled = Color3.fromRGB(40, 20, 70),
-    SliderRail = Color3.fromRGB(140, 75, 210),
-    DropdownFrame = Color3.fromRGB(150, 80, 220),
-    DropdownHolder = Color3.fromRGB(35, 20, 60),
-    DropdownBorder = Color3.fromRGB(70, 35, 110),
-    DropdownOption = Color3.fromRGB(140, 75, 210),
-    Keybind = Color3.fromRGB(140, 75, 210),
-    Input = Color3.fromRGB(140, 75, 210),
-    InputFocused = Color3.fromRGB(25, 15, 45),
-    InputIndicator = Color3.fromRGB(180, 90, 255),
-    InputIndicatorFocus = Color3.fromRGB(200, 110, 255),
-    Dialog = Color3.fromRGB(40, 25, 70),
-    DialogHolder = Color3.fromRGB(30, 18, 55),
-    DialogHolderLine = Color3.fromRGB(65, 35, 100),
-    DialogButton = Color3.fromRGB(50, 30, 80),
-    DialogButtonBorder = Color3.fromRGB(100, 55, 150),
-    DialogBorder = Color3.fromRGB(85, 45, 130),
-    DialogInput = Color3.fromRGB(55, 32, 90),
-    DialogInputLine = Color3.fromRGB(160, 85, 230),
-    Text = Color3.fromRGB(245, 235, 255),
-    SubText = Color3.fromRGB(175, 150, 210),
-    Hover = Color3.fromRGB(150, 80, 220),
-    HoverChange = 0.04
+	}
+
 }
-}
-	
 
 local Library = {
 	Version = "1.2.3",
