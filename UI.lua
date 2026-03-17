@@ -7496,7 +7496,7 @@ Discord = (function()
         return DiscordFrame
     end
     return Element
-end)(),
+end)()
 
 local NotificationModule = Components.Notification
 NotificationModule:Init(GUI)
