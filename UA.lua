@@ -3437,10 +3437,7 @@ Components.Button = (function()
 			Button.Title,
 		})
 		local Motor, SetTransparency = Creator.SpringMotor(1, Button.HoverFrame, "BackgroundTransparency", DialogCheck)
-local LastHover = 0
 Creator.AddSignal(Button.Frame.MouseEnter, function()
-	if tick() - LastHover < 0.016 then return end
-	LastHover = tick()
 	SetTransparency(0.97)
 end)
 		Creator.AddSignal(Button.Frame.MouseLeave, function()
