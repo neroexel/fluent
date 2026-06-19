@@ -842,7 +842,7 @@ Apple = {
 }
 
 local Library = {
-	Version = "1.2.3",
+	Version = "1.2.4",
 
 	OpenFrames = {},
 	Options = {},
@@ -10401,6 +10401,93 @@ end
 
 
 
+
+-- Public acrylic overlay helper for companion LocalScripts.
+-- It deliberately uses the same AcrylicPaint and Creator theme registry as Fluent windows,
+-- so external panels receive corners, noise, blur and live theme changes without duplicating UI.
+function Library:CreateAcrylicOverlay(Config)
+	Config = Config or {}
+	local parent = Config.Parent or Library.GUI or GUI
+	assert(parent, "CreateAcrylicOverlay - Fluent GUI is not available")
+
+	local zIndex = tonumber(Config.ZIndex) or 50
+	local root = New("Frame", {
+		Name = Config.Name or "FluentOverlay",
+		Parent = parent,
+		Size = Config.Size or UDim2.fromOffset(320, 220),
+		Position = Config.Position or UDim2.fromOffset(24, 84),
+		BackgroundTransparency = 1,
+		BorderSizePixel = 0,
+		ClipsDescendants = true,
+		Visible = Config.Visible ~= false,
+		ZIndex = zIndex,
+	})
+
+	local acrylicPaint = Acrylic.AcrylicPaint()
+	acrylicPaint.Frame.Name = "Acrylic"
+	acrylicPaint.Frame.Parent = root
+	acrylicPaint.Frame.Size = UDim2.fromScale(1, 1)
+	acrylicPaint.Frame.Position = UDim2.fromScale(0, 0)
+	acrylicPaint.Frame.ZIndex = 0
+
+	-- Keep acrylic layers below the public content layer. Companion panels may create
+	-- ordinary GuiObjects without manually assigning ZIndex values.
+	for _, descendant in ipairs(acrylicPaint.Frame:GetDescendants()) do
+		if descendant:IsA("GuiObject") then
+			descendant.ZIndex = 0
+		end
+	end
+
+	if acrylicPaint.AddParent then
+		pcall(function()
+			acrylicPaint.AddParent(root)
+		end)
+	end
+
+	local content = New("Frame", {
+		Name = "Content",
+		Parent = root,
+		Size = UDim2.fromScale(1, 1),
+		BackgroundTransparency = 1,
+		BorderSizePixel = 0,
+		ZIndex = 1,
+	})
+
+	local overlay = {
+		Root = root,
+		Content = content,
+		AcrylicPaint = acrylicPaint,
+		ZIndex = zIndex,
+	}
+
+	function overlay:BindTheme(instance, properties)
+		if instance and properties then
+			Creator.AddThemeObject(instance, properties)
+		end
+		return instance
+	end
+
+	function overlay:SetVisible(visible)
+		if self.Root then
+			self.Root.Visible = visible == true
+		end
+	end
+
+	function overlay:Destroy()
+		if self.AcrylicPaint and self.AcrylicPaint.Model then
+			pcall(function()
+				self.AcrylicPaint.Model:Destroy()
+			end)
+		end
+		if self.Root then
+			self.Root:Destroy()
+		end
+		self.Root = nil
+		self.Content = nil
+	end
+
+	return overlay
+end
 
 function Library:SetTheme(Value)
 	if Library.Window and table.find(Library.Themes, Value) then
