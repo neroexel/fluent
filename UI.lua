@@ -21,8 +21,6 @@ local TextService = game:GetService("TextService")
 local Camera = game:GetService("Workspace").CurrentCamera
 local Mouse = LocalPlayer:GetMouse()
 local httpService = game:GetService("HttpService")
-local RunService = game:GetService("RunService")
-local UserInputService = game:GetService("UserInputService")
 
 local Mobile = not RunService:IsStudio() and table.find({Enum.Platform.IOS, Enum.Platform.Android}, UserInputService:GetPlatform()) ~= nil
 
@@ -2291,8 +2289,6 @@ local Components = {
 Components.Element = (function()
 	local New = Creator.New
 
-	local Spring = Flipper.Spring.new
-
 	return function(Title, Desc, Parent, Hover, Options)
 		local Element = {}
 		local Options = Options or {}
@@ -2303,6 +2299,8 @@ Components.Element = (function()
 			TextColor3 = Color3.fromRGB(240, 240, 240),
 			TextSize = 13,
 			TextXAlignment = Enum.TextXAlignment.Left,
+			TextYAlignment = Enum.TextYAlignment.Center,
+			TextTruncate = Enum.TextTruncate.AtEnd,
 			Size = UDim2.new(1, 0, 0, 14),
 			BackgroundColor3 = Color3.fromRGB(255, 255, 255),
 			BackgroundTransparency = 1,
@@ -2312,13 +2310,6 @@ Components.Element = (function()
 			},
 		})
 
-        Creator.AddSignal(Element.TitleLabel.MouseEnter, function()
-			TweenService:Create(Element.TitleLabel, TweenInfo.new(0.2, Enum.EasingStyle.Bounce), {TextSize = 14.5}):Play()
-		end)
-		Creator.AddSignal(Element.TitleLabel.MouseLeave, function()
-			TweenService:Create(Element.TitleLabel, TweenInfo.new(0.2), {TextSize = 13}):Play()
-		end)
-									
 		Element.Header = New("Frame", {
 			AutomaticSize = Enum.AutomaticSize.Y,
 			BackgroundTransparency = 1,
@@ -2342,7 +2333,7 @@ Components.Element = (function()
 			end)
 			Element.IconImage = New("ImageLabel", {
 				Image = iconImage,
-				Size = UDim2.fromOffset(32, 32),
+				Size = UDim2.fromOffset(16, 16),
 				BackgroundTransparency = 1,
 				LayoutOrder = 1,
 				ThemeTag = {
@@ -2399,7 +2390,7 @@ Components.Element = (function()
 		})
 
 		Element.Frame = New("TextButton", {
-			Visible = Options.Visible and Options.Visible or true,
+			Visible = Options.Visible ~= false,
 			Size = UDim2.new(1, 0, 0, 0),
 			BackgroundTransparency = 0.89,
 			BackgroundColor3 = Color3.fromRGB(130, 130, 130),
