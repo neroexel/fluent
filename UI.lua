@@ -842,7 +842,7 @@ Apple = {
 }
 
 local Library = {
-	Version = "1.2.4",
+	Version = "1.2.4", -- overlay drag hotfix
 
 	OpenFrames = {},
 	Options = {},
@@ -10473,7 +10473,57 @@ function Library:CreateAcrylicOverlay(Config)
 		end
 	end
 
+	function overlay:MakeDraggable(handle)
+		handle = handle or self.Root
+		if not handle or not self.Root then return end
+		local dragging, dragInput, startPointer, startLocal = false, nil, nil, nil
+		local connections = {}
+		local function parentOffset()
+			local parent = self.Root and self.Root.Parent
+			return parent and parent:IsA("GuiObject") and parent.AbsolutePosition or Vector2.zero
+		end
+		local function normalize()
+			if not self.Root or not self.Root.Parent then return end
+			local parent = parentOffset()
+			local absolute = self.Root.AbsolutePosition
+			self.Root.Position = UDim2.fromOffset(absolute.X - parent.X, absolute.Y - parent.Y)
+		end
+		task.defer(normalize)
+		table.insert(connections, handle.InputBegan:Connect(function(input)
+			if input.UserInputType ~= Enum.UserInputType.MouseButton1 and input.UserInputType ~= Enum.UserInputType.Touch then return end
+			normalize()
+			dragging = true
+			startPointer = input.Position
+			startLocal = Vector2.new(self.Root.Position.X.Offset, self.Root.Position.Y.Offset)
+			local finish
+			finish = input.Changed:Connect(function()
+				if input.UserInputState == Enum.UserInputState.End then
+					dragging, dragInput = false, nil
+					if finish then finish:Disconnect() end
+				end
+			end)
+		end))
+		table.insert(connections, handle.InputChanged:Connect(function(input)
+			if input.UserInputType == Enum.UserInputType.MouseMovement or input.UserInputType == Enum.UserInputType.Touch then dragInput = input end
+		end))
+		table.insert(connections, UserInputService.InputChanged:Connect(function(input)
+			if input ~= dragInput or not dragging or not startPointer or not startLocal or not self.Root then return end
+			local parent = parentOffset()
+			local desired = parent + startLocal + (input.Position - startPointer)
+			local viewport, size = Camera.ViewportSize, self.Root.AbsoluteSize
+			local x = math.clamp(desired.X, 8, math.max(8, viewport.X - size.X - 8))
+			local y = math.clamp(desired.Y, 8, math.max(8, viewport.Y - size.Y - 8))
+			self.Root.Position = UDim2.fromOffset(x - parent.X, y - parent.Y)
+		end))
+		self._OverlayDragConnections = connections
+		return connections
+	end
+
 	function overlay:Destroy()
+		if self._OverlayDragConnections then
+			for _, connection in ipairs(self._OverlayDragConnections) do connection:Disconnect() end
+			self._OverlayDragConnections = nil
+		end
 		if self.AcrylicPaint and self.AcrylicPaint.Model then
 			pcall(function()
 				self.AcrylicPaint.Model:Destroy()
