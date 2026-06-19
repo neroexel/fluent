@@ -931,6 +931,23 @@ function Signal:wait()
 	return coroutine.yield()
 end
 
+-- Public theme bridge for companion overlays that are loaded outside the Fluent window.
+Library.ThemeChanged = Signal.new()
+
+function Library:GetThemeProperty(Property)
+	local creator = self.Creator
+	return creator and creator.GetThemeProperty and creator.GetThemeProperty(Property) or nil
+end
+
+function Library:GetThemeColor(Property)
+	local creator = self.Creator
+	return creator and creator.GetThemeProperty and creator.GetThemeProperty(Property) or nil
+end
+
+function Library:OnThemeChanged(Handler)
+	return self.ThemeChanged:connect(Handler)
+end
+
 local Linear = {}
 Linear.__index = Linear
 
@@ -10386,37 +10403,20 @@ end
 
 
 function Library:SetTheme(Value)
-
-
 	if Library.Window and table.find(Library.Themes, Value) then
-
-
+		local changed = Library.Theme ~= Value
 		Library.Theme = Value
-
-
 		Creator.UpdateTheme()
 
-
-
-
-
 		if Value == "Glass" then
-
-
 			Library:SetWindowTransparency(0.9)
-
-
 		end
 
-
+		if changed and Library.ThemeChanged then
+			Library.ThemeChanged:fire(Value)
+		end
 	end
-
-
 end
-
-
-
-
 
 function Library:Destroy()
 
